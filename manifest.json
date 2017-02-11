@@ -1,14 +1,13 @@
 {
   "manifest_version": 2,
   "name": "stratus",
-  "version": "v0.0.1",
-  "default_locale": "en",
+  "version": "0.0.1",
   "description": "Simple chrome extension that allows you to lower the volume output on SoundCloud.com",
-  "page_action": {
+  "browser_action": {
     "default_icon": {
-      "16": "images/icon16.png",
-      "24": "images/icon24.png",
-      "32": "images/icon32.png"
+      "16": "images/temp.png",
+      "24": "images/temp.png",
+      "32": "images/temp.png"
     },
     "default_title": "stratus",
     "default_popup": "popup.html"
@@ -16,8 +15,8 @@
   "content_scripts": [
     {
       "matches": ["*://soundcloud.com/*"],
-      "js": ["myscript.js"],
+      "js": ["js/content-script.js"],
       "run_at": "document_start"
     }
-  ],
+  ]
 }
