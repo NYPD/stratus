@@ -1,0 +1,15 @@
+{
+  "rules": {
+    "quotes": ["error", "single"],
+    "semi": ["error","always"]
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "globals": {
+    "chrome": true,
+    "webpackJsonp": true
+  },
+  "extends": "eslint:recommended"
+}

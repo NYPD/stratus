@@ -1,0 +1,18 @@
+/* Soundcloud overwrites */
+.playControls__volume {
+
+}
+
+/* stratus stsyles */
+.stratus-container {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.stratus-container .stratus-icon {
+  margin-right: 5px;
+}
+.stratus-input {
+
+}
