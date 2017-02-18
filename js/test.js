@@ -1,5 +1,8 @@
+var volumeSliderWrapper = document.querySelector('.volume__sliderWrapper');
+var currentVolume = Number.parseFloat(volumeSliderWrapper.getAttribute('aria-valuenow'), 10);
+
 var stratusInput = document.querySelector('.stratus-input');
-var volume = stratusInput.checked? 0.01 : 1.0;
+var volume = stratusInput.checked? (currentVolume / 2) : currentVolume;
 
 webpackJsonp([], {
   0: function(a, b, require) {
