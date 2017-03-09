@@ -1,18 +1,76 @@
-/* Soundcloud overwrites */
+/* Soundcloud overwrites **************************************************************************/
 .playControls__volume {
-
+  margin-right: 10px !important;
 }
 
-/* stratus stsyles */
+.playControls__volume.stratus .volume__button {
+  background-position-x: -1px;
+}
+
+.playControls__volume.stratus .volume[data-level='0'] .volume__button {
+  background-image: url('chrome-extension://__MSG_@@extension_id__/images/volume-muted.png');
+  background-size: 22px 13px;
+}
+
+.playControls__volume.stratus .volume__button,
+.playControls__volume.stratus .volume[data-level='1'] .volume__button,
+.playControls__volume.stratus .volume[data-level='2'] .volume__button,
+.playControls__volume.stratus .volume[data-level='3'] .volume__button,
+.playControls__volume.stratus .volume[data-level='4'] .volume__button,
+.playControls__volume.stratus .volume[data-level='5'] .volume__button,
+.playControls__volume.stratus .volume[data-level='6'] .volume__button,
+.playControls__volume.stratus .volume[data-level='7'] .volume__button,
+.playControls__volume.stratus .volume[data-level='8'] .volume__button,
+.playControls__volume.stratus .volume[data-level='9'] .volume__button {
+  background-image: url('chrome-extension://__MSG_@@extension_id__/images/volume-low.png');
+  background-size: 16px 13px;
+}
+.playControls__volume.stratus .volume[data-level='10'] .volume__button {
+  background-image: url('chrome-extension://__MSG_@@extension_id__/images/volume-high.png');
+  background-size: 20px 13px;
+}
+
+.playControls__volume.stratus .volume__sliderWrapper {
+  display: none;
+}
+
+/* stratus styles *********************************************************************************/
+.playControls__volume .stratus-slider-container {
+  position: absolute;
+  display: none;
+  left: -66px;
+  bottom: 50px;
+  z-index: 1;
+  height: 45px;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #f2f2f2;
+  border: 1px solid transparent;
+  border-color: #ccc;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+.playControls__volume .stratus-slider-container .stratus-volume {
+  font-weight: bold;
+}
+
+.playControls__volume .stratus-slider-container .stratus-slider {
+  cursor: pointer;
+}
+
+.playControls__volume.stratus .volume.expanded .stratus-slider-container {
+  display: block;
+}
+
 .stratus-container {
   display: flex;
-  align-items: center;
   margin-right: 10px;
+  align-items: center;
+  cursor: pointer;
 }
-
 .stratus-container .stratus-icon {
   margin-right: 5px;
 }
-.stratus-input {
-
+.stratus-container .stratus-input {
+  cursor: pointer;
 }
