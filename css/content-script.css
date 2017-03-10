@@ -25,6 +25,7 @@
   background-image: url('chrome-extension://__MSG_@@extension_id__/images/volume-low.png');
   background-size: 16px 13px;
 }
+
 .playControls__volume.stratus .volume[data-level='10'] .volume__button {
   background-image: url('chrome-extension://__MSG_@@extension_id__/images/volume-high.png');
   background-size: 20px 13px;

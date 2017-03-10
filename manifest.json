@@ -26,6 +26,6 @@
   "web_accessible_resources": [
     "images/volume-*.png",
     "images/temp.png",
-    "js/test.js"
+    "js/stratus-inject.js"
   ]
 }

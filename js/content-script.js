@@ -73,7 +73,15 @@ const stratus = (function() {
       playControlsVolume.classList.toggle('stratus');
 
       var stratusNotEnabled = !playControlsVolume.classList.contains('stratus');
-      if (stratusNotEnabled) return false;
+      if (stratusNotEnabled) {
+        /*
+         * Sets the [data-level] to a whole numeber between 0-10 so the correct speaker
+         * icon will be displayed in soundcloud when coming out of stratus mode. This actually
+         * does not change the actual volume level so the user won't hear a sudden change in volume 
+         */
+        soundCloudVolumeDiv.setAttribute('data-level', Math.round(stratusSlider.value / 10));
+        return false;
+      }
 
       var volumeLevel = Number.parseInt(soundCloudVolumeDiv.getAttribute('data-level')) * 10;
       stratusSlider.value = volumeLevel;
@@ -85,18 +93,20 @@ const stratus = (function() {
 
     stratusSlider.addEventListener('change', _stratusSliderEventHandler);
     stratusSlider.addEventListener('input', _stratusSliderEventHandler);
+    stratusSlider.addEventListener('mouseout', function () {stratusSlider.blur();});
 
     soundcloudVolumeButton.addEventListener('click', function(event) {
 
       var stratusNotEnabled = !playControlsVolume.classList.contains('stratus');
-
       if (stratusNotEnabled) return true;
 
-      var volumeIsNotMuted = !soundCloudVolumeDiv.classList.contains('muted');
+      soundcloudVolumeButton.classList.toggle('stratus-muted');
 
-      if(volumeIsNotMuted) return false;
+      var isMuted = soundcloudVolumeButton.classList.contains('stratus-muted');
+      var volumeLevel = isMuted? 0 : Number.parseFloat(stratusSlider.getAttribute('data-previous-volume'), 10);
 
-      stratusSlider.value = 0;
+      if(isMuted) stratusSlider.setAttribute('data-previous-volume', stratusSlider.value);
+      stratusSlider.value = volumeLevel;
 
       var changeEvent = new Event('change', {'bubbles': true });
       stratusSlider.dispatchEvent(changeEvent);
@@ -114,7 +124,7 @@ const stratus = (function() {
 
     var script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = chrome.extension.getURL('js/test.js');
+    script.src = chrome.extension.getURL('js/stratus-inject.js');
     script.className = 'stratus-script';
     (document.head || document.body || document.documentElement).appendChild(script);
 
