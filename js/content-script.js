@@ -3,6 +3,17 @@ const stratus = (function() {
   let intialize = function() {
     _insertControls();
     _initializeListeners();
+
+    var turnOnStratus = localStorage.getItem('stratusOn') === 'true';
+    if(turnOnStratus) {
+
+      var stratusInput = document.querySelector('.stratus-input');
+      var changeEvent = new Event('change', {'bubbles': true});
+      changeEvent.stratusVolume = localStorage.getItem('stratusVolume');
+
+      stratusInput.checked = true;
+      stratusInput.dispatchEvent(changeEvent);
+    }
   };
 
   let _insertControls = function() {
@@ -55,6 +66,7 @@ const stratus = (function() {
     let playControlsVolume = document.querySelector('.playControls__volume');
     let soundCloudVolumeDiv = playControlsVolume.querySelector('.volume');
     let soundcloudVolumeButton = soundCloudVolumeDiv.querySelector('.volume__button');
+    let soundcloudVolumeSliderWrapper = soundCloudVolumeDiv.querySelector('.volume__sliderWrapper');
 
     stratusContainer.addEventListener('click', function(event) {
 
@@ -68,7 +80,9 @@ const stratus = (function() {
       return false;
     });
 
-    stratusInput.addEventListener('change', function() {
+    stratusInput.addEventListener('change', function(event) {
+
+      localStorage.setItem('stratusOn', stratusInput.checked);
 
       playControlsVolume.classList.toggle('stratus');
 
@@ -77,13 +91,15 @@ const stratus = (function() {
         /*
          * Sets the [data-level] to a whole numeber between 0-10 so the correct speaker
          * icon will be displayed in soundcloud when coming out of stratus mode. This actually
-         * does not change the actual volume level so the user won't hear a sudden change in volume 
+         * does not change the actual volume level so the user won't hear a sudden change in volume
          */
-        soundCloudVolumeDiv.setAttribute('data-level', Math.round(stratusSlider.value / 10));
+        soundCloudVolumeDiv.setAttribute('data-level', Math.ceil(stratusSlider.value / 10));
         return false;
       }
 
-      var volumeLevel = Number.parseInt(soundCloudVolumeDiv.getAttribute('data-level')) * 10;
+      var hasStratusVolume = event.stratusVolume !== undefined && event.stratusVolume !== null;
+
+      var volumeLevel = hasStratusVolume ? event.stratusVolume : Number.parseFloat(soundcloudVolumeSliderWrapper.getAttribute('aria-valuenow')) * 100;
       stratusSlider.value = volumeLevel;
 
       var changeEvent = new Event('change', {'bubbles': false });

@@ -1,6 +1,8 @@
 var stratusSlider = document.querySelector('.stratus-slider');
 var volume = stratusSlider.value;
 
+localStorage.setItem('stratusVolume', volume);
+
 webpackJsonp([], {
   0: function(a, b, require) {
     var modules = require.c;
