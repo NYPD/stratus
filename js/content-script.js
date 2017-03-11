@@ -28,7 +28,7 @@ const stratus = (function() {
 
     let stratusIcon = document.createElement('img');
     stratusIcon.className = 'stratus-icon';
-    stratusIcon.src = chrome.extension.getURL('images/temp.png');
+    stratusIcon.src = chrome.extension.getURL('images/notext16.png');
 
     let divInputContainer = document.createElement('div');
     divInputContainer.className = 'stratus-container';
