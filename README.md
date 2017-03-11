@@ -1,8 +1,8 @@
 # stratus
-SoundCloud.com is way too loud.
+soundcloud.com is way too loud.
 
 ## What is this?
-Simple chrome extension that allows you to lower the volume output on [SoundCloud](www.soundcloud.com) to levels lower than what the normal volume slider allows.
+Simple chrome extension that provides more control over the volume slider than is available by the default on [SoundCloud.](www.soundcloud.com)
 
 Check it out on the [chrome web store.](https://chrome.google.com/webstore/detail/stratus/ankobfgkkipkkdpbkgpplhjoapjkfheg)
 
