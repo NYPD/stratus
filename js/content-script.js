@@ -24,7 +24,7 @@ const stratus = (function() {
     let checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.className = 'stratus-input';
-    checkbox.title = 'Check to halve Soundcloud\'s output';
+    checkbox.title = 'Check to enable stratus';
 
     let stratusIcon = document.createElement('img');
     stratusIcon.className = 'stratus-icon';
