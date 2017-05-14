@@ -7,26 +7,26 @@
   background-position-x: -1px;
 }
 
-.playControls__volume.stratus .volume[data-level='0'] .volume__button {
+.playControls__volume.stratus .volume[data-stratus-volume='0'] .volume__button {
   background-image: url('chrome-extension://__MSG_@@extension_id__/images/volume-muted.png');
   background-size: 22px 13px;
 }
 
 .playControls__volume.stratus .volume__button,
-.playControls__volume.stratus .volume[data-level='1'] .volume__button,
-.playControls__volume.stratus .volume[data-level='2'] .volume__button,
-.playControls__volume.stratus .volume[data-level='3'] .volume__button,
-.playControls__volume.stratus .volume[data-level='4'] .volume__button,
-.playControls__volume.stratus .volume[data-level='5'] .volume__button,
-.playControls__volume.stratus .volume[data-level='6'] .volume__button,
-.playControls__volume.stratus .volume[data-level='7'] .volume__button,
-.playControls__volume.stratus .volume[data-level='8'] .volume__button,
-.playControls__volume.stratus .volume[data-level='9'] .volume__button {
+.playControls__volume.stratus .volume[data-stratus-volume='1'] .volume__button,
+.playControls__volume.stratus .volume[data-stratus-volume='2'] .volume__button,
+.playControls__volume.stratus .volume[data-stratus-volume='3'] .volume__button,
+.playControls__volume.stratus .volume[data-stratus-volume='4'] .volume__button,
+.playControls__volume.stratus .volume[data-stratus-volume='5'] .volume__button,
+.playControls__volume.stratus .volume[data-stratus-volume='6'] .volume__button,
+.playControls__volume.stratus .volume[data-stratus-volume='7'] .volume__button,
+.playControls__volume.stratus .volume[data-stratus-volume='8'] .volume__button,
+.playControls__volume.stratus .volume[data-stratus-volume='9'] .volume__button {
   background-image: url('chrome-extension://__MSG_@@extension_id__/images/volume-low.png');
   background-size: 16px 13px;
 }
 
-.playControls__volume.stratus .volume[data-level='10'] .volume__button {
+.playControls__volume.stratus .volume[data-stratus-volume='10'] .volume__button {
   background-image: url('chrome-extension://__MSG_@@extension_id__/images/volume-high.png');
   background-size: 20px 13px;
 }
