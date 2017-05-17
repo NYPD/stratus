@@ -1,3 +1,6 @@
+## Update 2017-5-16
+Looks like soundcloud changed the way their default volume control handles, which could possibly result in this extension now being useless....
+
 # stratus
 soundcloud.com is way too loud.
 
