@@ -1,3 +1,6 @@
+## Update 2017-5-22
+Extension is fully useless. I'll look into enhancing what they have since it is a bit difficult to select an exact volume.
+
 ## Update 2017-5-16
 Looks like soundcloud changed the way their default volume control handles, which could possibly result in this extension now being useless....
 
