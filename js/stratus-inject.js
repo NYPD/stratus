@@ -16,4 +16,4 @@ webpackJsonp([], {
   }
 });
 
-document.querySelector('.stratus-volume').innerText = volume;
+document.querySelector('.stratus-volume-input').value = volume;
