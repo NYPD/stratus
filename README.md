@@ -8,7 +8,7 @@ Looks like soundcloud changed the way their default volume control handles, whic
 soundcloud.com is way too loud.
 
 ## What is this?
-Simple chrome extension that provides more control over the volume slider than is available by the default on [SoundCloud.](www.soundcloud.com)
+Simple chrome extension that provides more control over the volume slider than is available by the default on [SoundCloud.](https://www.soundcloud.com)
 
 Check it out on the [chrome web store.](https://chrome.google.com/webstore/detail/stratus/ankobfgkkipkkdpbkgpplhjoapjkfheg)
 
