@@ -1,34 +1,33 @@
 const stratus = (function() {
 
-  let playControlsVolume = document.querySelector('.playControls__volume');
-  let soundCloudVolumeDiv = playControlsVolume.querySelector('.volume');
-  let soundcloudVolumeButton = soundCloudVolumeDiv.querySelector('.volume__button');
-  let soundcloudVolumeSliderWrapper = soundCloudVolumeDiv.querySelector('.volume__sliderWrapper');
+  let _playControlsVolume = document.querySelector('.playControls__volume');
+  let _soundCloudVolumeDiv = _playControlsVolume.querySelector('.volume');
+  let _soundcloudVolumeButton = _soundCloudVolumeDiv.querySelector('.volume__button');
+  let _soundcloudVolumeSliderWrapper = _soundCloudVolumeDiv.querySelector('.volume__sliderWrapper');
+  let _stratusSlider;
+  let _stratusVolumeInput;
 
   let intialize = function() {
     _insertControls();
     _initializeListeners();
 
-    var turnOnStratus = localStorage.getItem('stratusOn') === 'true';
-    if(turnOnStratus) {
+    var stratusOff = localStorage.getItem('stratusOn') !== 'true';
+    if (stratusOff) return;
 
-      var stratusInput = document.querySelector('.stratus-input');
-      var changeEvent = new Event('change', {'bubbles': true});
-      changeEvent.stratusVolume = localStorage.getItem('stratusVolume');
+    var stratusInput = document.querySelector('.stratus-checkbox');
+    var changeEvent = new Event('change', {'bubbles': true});
+    changeEvent.stratusVolume = localStorage.getItem('stratusVolume');
 
-      stratusInput.checked = true;
-      stratusInput.dispatchEvent(changeEvent);
-    }
+    stratusInput.checked = true;
+    stratusInput.dispatchEvent(changeEvent);
   };
 
   let _insertControls = function() {
 
-    let playControlsVolume = document.querySelector('.playControls__volume');
-
     //Listener Handle
     let checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    checkbox.className = 'stratus-input';
+    checkbox.className = 'stratus-checkbox';
     checkbox.title = 'Check to enable stratus';
 
     let stratusIcon = document.createElement('img');
@@ -41,7 +40,7 @@ const stratus = (function() {
     divInputContainer.appendChild(stratusIcon);
     divInputContainer.appendChild(checkbox);
 
-    playControlsVolume.insertAdjacentElement('afterend', divInputContainer);
+    _playControlsVolume.insertAdjacentElement('afterend', divInputContainer);
 
 
     //Slider Stuff
@@ -49,83 +48,92 @@ const stratus = (function() {
     stratusSlider.type = 'range';
     stratusSlider.className = 'stratus-slider';
 
-    let stratusVolumeSpan = document.createElement('span');
-    stratusVolumeSpan.className = 'stratus-volume';
+    let stratusVolumeInput = document.createElement('input');
+    stratusVolumeInput.type = 'number';
+    stratusVolumeInput.className = 'stratus-volume-input';
+    stratusVolumeInput.min = 0;
+    stratusVolumeInput.max = 100;
 
     let stratusSliderContainer = document.createElement('div');
     stratusSliderContainer.className = 'stratus-slider-container';
 
     stratusSliderContainer.appendChild(stratusSlider);
-    stratusSliderContainer.appendChild(stratusVolumeSpan);
+    stratusSliderContainer.appendChild(stratusVolumeInput);
 
-    playControlsVolume.querySelector('.volume').insertAdjacentElement('beforeend', stratusSliderContainer);
+    _playControlsVolume.querySelector('.volume').insertAdjacentElement('beforeend', stratusSliderContainer);
 
   };
 
   let _initializeListeners = function() {
 
     let stratusContainer = document.querySelector('.stratus-container');
-    let stratusInput = document.querySelector('.stratus-input');
-    let stratusSlider = document.querySelector('.stratus-slider');
+    let stratusCheckbox = document.querySelector('.stratus-checkbox');
+    _stratusVolumeInput = document.querySelector('.stratus-volume-input');
+    _stratusSlider = document.querySelector('.stratus-slider');
 
     stratusContainer.addEventListener('click', function(event) {
 
       var target = event.target;
       var isInput = target.nodeName === 'INPUT';
-      if(isInput) return false;
+      if (isInput) return false;
 
       var clickEvent = new MouseEvent('click', {'bubbles': false});
-      stratusInput.dispatchEvent(clickEvent);
+      stratusCheckbox.dispatchEvent(clickEvent);
 
       return false;
     });
 
-    stratusInput.addEventListener('change', function(event) {
+    stratusCheckbox.addEventListener('change', function(event) {
 
-      localStorage.setItem('stratusOn', stratusInput.checked);
+      localStorage.setItem('stratusOn', stratusCheckbox.checked);
 
-      playControlsVolume.classList.toggle('stratus');
+      _playControlsVolume.classList.toggle('stratus');
 
-      var stratusNotEnabled = !playControlsVolume.classList.contains('stratus');
+      var stratusNotEnabled = !_playControlsVolume.classList.contains('stratus');
       if (stratusNotEnabled) {
         /*
          * Sets the [data-level] to a whole number between 0-10 so the correct speaker
          * icon will be displayed in soundcloud when coming out of stratus mode. This actually
          * does not change the actual volume level so the user won't hear a sudden change in volume
          */
-        soundCloudVolumeDiv.setAttribute('data-level', Math.ceil(stratusSlider.value / 10));
+        _soundCloudVolumeDiv.setAttribute('data-level', Math.ceil(_stratusSlider.value / 10));
         return false;
       }
 
       var hasStratusVolume = event.stratusVolume !== undefined && event.stratusVolume !== null;
 
-      var volumeLevel = hasStratusVolume ? event.stratusVolume : Number.parseFloat(soundcloudVolumeSliderWrapper.getAttribute('aria-valuenow')) * 100;
-      stratusSlider.value = volumeLevel;
+      var volumeLevel = hasStratusVolume ? event.stratusVolume : Number.parseFloat(_soundcloudVolumeSliderWrapper.getAttribute('aria-valuenow')) * 100;
+      _stratusSlider.value = volumeLevel;
 
-      var changeEvent = new Event('change', {'bubbles': false });
-      stratusSlider.dispatchEvent(changeEvent);
+      var changeEvent = new Event('change', {'bubbles': false});
+      _stratusSlider.dispatchEvent(changeEvent);
 
     });
 
-    stratusSlider.addEventListener('change', _stratusSliderEventHandler); //Normal change event
-    stratusSlider.addEventListener('input', _stratusSliderEventHandler); //Range sliding event
-    stratusSlider.addEventListener('mouseout', function () {stratusSlider.blur();});
+    _stratusVolumeInput.addEventListener('change', _stratusVolumeInputEventHandler);
+    _stratusVolumeInput.addEventListener('mouseup', _stratusVolumeInputEventHandler);
 
-    soundcloudVolumeButton.addEventListener('click', function(event) {
+    _stratusSlider.addEventListener('change', _stratusSliderEventHandler); //Normal change event
+    _stratusSlider.addEventListener('input', _stratusSliderEventHandler); //Range sliding event
+    _stratusSlider.addEventListener('mouseout', function() {
+      _stratusSlider.blur();
+    });
 
-      var stratusNotEnabled = !playControlsVolume.classList.contains('stratus');
+    _soundcloudVolumeButton.addEventListener('click', function(event) {
+
+      var stratusNotEnabled = !_playControlsVolume.classList.contains('stratus');
       if (stratusNotEnabled) return true;
 
-      soundcloudVolumeButton.classList.toggle('stratus-muted');
+      _soundcloudVolumeButton.classList.toggle('stratus-muted');
 
-      var isMuted = soundcloudVolumeButton.classList.contains('stratus-muted');
-      var volumeLevel = isMuted? 0 : Number.parseFloat(stratusSlider.getAttribute('data-previous-volume'), 10);
+      var isMuted = _soundcloudVolumeButton.classList.contains('stratus-muted');
+      var volumeLevel = isMuted ? 0 : Number.parseFloat(_stratusSlider.getAttribute('data-previous-volume'), 10);
 
-      if(isMuted) stratusSlider.setAttribute('data-previous-volume', stratusSlider.value);
-      stratusSlider.value = volumeLevel;
+      if (isMuted) _stratusSlider.setAttribute('data-previous-volume', _stratusSlider.value);
+      _stratusSlider.value = volumeLevel;
 
-      var changeEvent = new Event('change', {'bubbles': true });
-      stratusSlider.dispatchEvent(changeEvent);
+      var changeEvent = new Event('change', {'bubbles': true});
+      _stratusSlider.dispatchEvent(changeEvent);
 
       event.preventDefault();
       event.stopPropagation();
@@ -133,10 +141,16 @@ const stratus = (function() {
 
   };
 
+  let _stratusVolumeInputEventHandler = function() {
+    _stratusSlider.value = _stratusVolumeInput.value;
+    var changeEvent = new Event('change', {'bubbles': false});
+    _stratusSlider.dispatchEvent(changeEvent);
+  };
+
   let _stratusSliderEventHandler = function() {
 
     //'this' is the element this function will be attached to for the event listener
-    soundCloudVolumeDiv.setAttribute('data-stratus-volume', Math.ceil(this.value / 10));
+    _soundCloudVolumeDiv.setAttribute('data-stratus-volume', Math.ceil(this.value / 10));
 
     var stratusScript = document.querySelector('.stratus-script');
     if (stratusScript !== null) stratusScript.parentNode.removeChild(stratusScript);

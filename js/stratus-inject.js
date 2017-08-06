@@ -10,10 +10,10 @@ webpackJsonp([], {
 
       if (! modules[x].exports.broadcast) continue;
 
-      modules[x].exports.broadcast('volume:set', (volume / 100));
+      modules[x].exports.broadcast('volume', {volume: (volume / 100), muted: false} );
       break;
     }
   }
 });
 
-document.querySelector('.stratus-volume').innerText = volume;
+document.querySelector('.stratus-volume-input').value = volume;
