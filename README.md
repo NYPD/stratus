@@ -13,6 +13,9 @@ The volume slider they give on that page ~~is wack~~ was wack. Now it is just di
 
 ## Extension History
 
+#### Update 2017-8-6
+Extension is back up. Not as useful as v0.0.1, but hopefully will help a few people out.
+
 #### Update 2017-5-22
 Extension is fully useless. I'll look into enhancing what they have since it is a bit difficult to select an exact volume.
 
