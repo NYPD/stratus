@@ -1,6 +1,5 @@
-![stratus Logo](https://raw.githubusercontent.com/NYPD/stratus/master/images/long550x200.png)
-
-<sub>(Logo by [Louis Wabnitz @ studio peep](http://studiopeep.com/))</sub>
+![stratus Logo](https://raw.githubusercontent.com/NYPD/stratus/master/images/long550x200.png)<br>
+<sup>(Logo by [Louis Wabnitz @ studio peep](http://studiopeep.com/))</sup>
 
 ## What is this?
 Simple chrome extension that provides more control over the volume slider than is available by the default on [SoundCloud.](https://www.soundcloud.com)
