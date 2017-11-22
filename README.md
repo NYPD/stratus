@@ -1,4 +1,4 @@
-![stratus Logo](https://raw.githubusercontent.com/NYPD/stratus/master/images/long550x200.png)<br>
+![stratus Logo](logo-long550x226)<br>
 <sup>(Logo by [Louis Wabnitz @ studio peep](http://studiopeep.com/))</sup>
 
 ## What is this?
