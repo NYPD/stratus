@@ -8,11 +8,11 @@
     "matches": ["*://soundcloud.com/*"],
     "css": ["css/content-script.css"],
     "js": ["js/content-script.js"],
-    "run_at": "document_end"
+    "run_at": "document_idle"
   }],
   "icons": {
     "16": "images/notext16.png",
-    "24": "images/notext16.png",
+    "24": "images/notext24.png",
     "32": "images/notext32.png",
     "48": "images/notext48.png",
     "64": "images/notext64.png",
