@@ -1,18 +1,18 @@
 {
   "manifest_version": 2,
   "name": "stratus",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Simple extension that allows finer volume control on SoundCloud.com",
 
   "content_scripts": [{
     "matches": ["*://soundcloud.com/*"],
     "css": ["css/content-script.css"],
     "js": ["js/content-script.js"],
-    "run_at": "document_end"
+    "run_at": "document_idle"
   }],
   "icons": {
     "16": "images/notext16.png",
-    "24": "images/notext16.png",
+    "24": "images/notext24.png",
     "32": "images/notext32.png",
     "48": "images/notext48.png",
     "64": "images/notext64.png",
