@@ -6,7 +6,7 @@
   "env": {
     "browser": true,
     "es6": true,
-	"webextensions": true
+    "webextensions": true
   },
   "globals": {
     "chrome": true,
