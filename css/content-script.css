@@ -2,11 +2,7 @@
 .playControls__volume {
   margin-right: 5px !important;
 }
-@-moz-document url-prefix() {
-  h1 {
-    color: red;
-  }
-}
+
 /* Allows for the hover css property to properly take effexct */
 .playControls__volume.stratus {
   padding-top: 5px;
