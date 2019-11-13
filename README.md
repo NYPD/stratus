@@ -15,6 +15,9 @@ The volume slider they give on that page makes it difficult to exactly select wh
 
 ## Extension History
 
+#### Update 2019-11-12
+Extension broken due to new Souncloud code. Need to take a look.
+
 #### Update 2018-8-25
 We Firefox now
 
