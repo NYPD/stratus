@@ -15,6 +15,9 @@ The volume slider they give on that page makes it difficult to exactly select wh
 
 ## Extension History
 
+#### Update 2019-12-30
+Dead extension. Soundcloud made changes that made volume selection easier. Use soundcloud instead.
+
 #### Update 2019-11-12
 Extension broken due to new Souncloud code. Need to take a look.
 
